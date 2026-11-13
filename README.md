@@ -1,49 +1,69 @@
-# Loopa — WAMP Kurulum Paketi
+<div align="center">
 
-Loopa, kullanılmayan eşyaları yakın çevrede **bağış**, **ödünç**, **takas** veya **ortak kullanım** yoluyla yeniden dolaşıma sokan harita tabanlı bir paylaşım prototipidir.
+![Loopa GitHub banner](docs/assets/loopa-github-banner.png)
 
-## Klasör yapısı
+# Loopa — Yakın Çevrede Eşya Paylaşım Platformu
 
-- `backend/` PHP API ve MySQL bağlantısı
-- `frontend/` kullanıcı arayüzü
-- `frontend/assets/` tasarım, JavaScript, logo ve marka panoları
-- `uploads/` yüklenen eşya ve profil görselleri
-- `.env` veritabanı ayarları
-- `database.sql` ilk kurulum veritabanı
-- `migration.sql` sonraki şema eklemeleri
+**Kullanmadığın eşya, bir başkasına fayda.**
 
-## WAMP kurulumu
+Yakındaki kişilerin kullanılmayan eşyaları **bağış**, **ödünç verme**, **takas** ve **ortak kullanım** yoluyla paylaşabilmesini amaçlayan harita tabanlı bir web uygulaması.
 
-1. ZIP dosyasını çıkarın.
-2. Çıkan `Loopa` klasörünü WAMP içindeki `www` klasörüne kopyalayın.
-   - Genellikle: `C:\wamp64\www\Loopa`
-3. WAMP Server'ı başlatın. Apache ve MySQL servislerinin yeşil olduğundan emin olun.
-4. Tarayıcıdan `http://localhost/phpmyadmin/` adresini açın.
-5. **İçe Aktar / Import** bölümünden önce `database.sql` dosyasını çalıştırın.
-6. Gerekirse `.env` dosyasındaki veritabanı bilgilerini düzenleyin. Standart WAMP kurulumu için:
-   - DB_NAME=`loopa`
-   - DB_USER=`root`
-   - DB_PASS boş
-7. Uygulamayı Chrome'da açın:
+`PHP` · `MySQL` · `JavaScript` · `Leaflet` · `OpenStreetMap` · `WAMP`
 
-   `http://localhost/Loopa/frontend/`
+[GitHub Profili](https://github.com/melih357) · [LinkedIn](https://www.linkedin.com/in/melihefeercan/)
 
-## Test kullanıcıları
+</div>
 
-Örnek kullanıcıların şifre hash'i demo amaçlıdır. En sorunsuz test için arayüzde **Kayıt Ol** seçeneğinden iki ayrı hesap oluşturun.
+---
 
-## Hızlı test senaryosu
+## Proje hakkında
 
-1. Birinci hesapla kayıt olun.
-2. **Eşya Ekle** bölümünden fotoğraflı ilan yayınlayın.
-3. Çıkış yapıp ikinci hesapla giriş yapın.
-4. Haritadaki ilana tıklayıp talep gönderin.
-5. Birinci hesapla tekrar giriş yapıp **Taleplerim** bölümünden talebi kabul edin.
-6. Her iki kullanıcı da kabul edilen talep üzerinden mesajlaşmayı test edebilir.
+Loopa, yakın çevredeki kullanılmayan eşyaları yeniden değerlendirmeyi kolaylaştırmak için geliştirilmiş **yerel MVP / prototip** projesidir. Kullanıcılar ilan oluşturabilir, haritadan ilanları inceleyebilir, talep gönderebilir ve kabul edilen talepler üzerinden mesajlaşmayı deneyebilir.
 
-## Önemli notlar
+## Özellikler
 
-- Harita için Leaflet ve OpenStreetMap CDN kullanılır; internet bağlantısı gerekir.
-- Kesin ev adresi gösterilmez, yalnızca yaklaşık konum tutulur.
-- Bu paket yerel MVP/prototip içindir. Canlı kullanımda CSRF koruması, e-posta/SMS doğrulama, gelişmiş dosya güvenliği, moderasyon ve HTTPS eklenmelidir.
-- `uploads/items` klasörü Apache tarafından yazılabilir olmalıdır.
+- Fotoğrafla eşya ilanı oluşturma
+- Bağış, ödünç, takas veya ortak kullanım seçenekleri
+- Leaflet ve OpenStreetMap tabanlı ilan haritası
+- Kullanıcı hesapları ve eşya talepleri
+- Talep kabulü sonrasında mesajlaşma
+- Tam ev adresi yerine yaklaşık konum yaklaşımı
+
+## Teknik yapı
+
+| Bileşen | Teknoloji |
+| --- | --- |
+| Sunucu | PHP |
+| Veritabanı | MySQL |
+| Arayüz | HTML, CSS, JavaScript |
+| Harita | Leaflet / OpenStreetMap CDN |
+| Yerel ortam | WAMP |
+
+## Yerel kurulum (WAMP)
+
+1. Projeyi `C:\wamp64\www\Loopa` klasörüne yerleştirin.
+2. WAMP ile Apache ve MySQL servislerini çalıştırın.
+3. `http://localhost/phpmyadmin/` adresinden veritabanını oluşturun ve **`database.sql`** dosyasını içe aktarın.
+4. Kendi bilgisayarınızda `.env` içindeki veritabanı ayarlarını düzenleyin. Gerçek `.env` dosyasını GitHub'a yüklemeyin.
+5. Uygulamayı `http://localhost/Loopa/frontend/` adresinde açın.
+6. Mevcut kurulum sonrası gerektiğinde `migration.sql` içeriğinin uygulanıp uygulanmadığını kontrol edin; veritabanına körlemesine ikinci kez uygulamayın.
+
+### Hızlı test
+
+1. İki farklı test hesabı oluşturun.
+2. İlk hesapla fotoğraflı eşya ilanı ekleyin.
+3. İkinci hesapla haritadan ilana girip talep gönderin.
+4. İlk hesapla talebi kabul edin.
+5. Kabul sonrasında mesajlaşmayı sınayın.
+
+> Harita bileşenleri CDN kullandığından internet gerekir. `uploads/items` klasörünün sunucu tarafından yazılabilir olması gerekir.
+
+## Proje durumu ve güvenlik
+
+**Durum: Yerel geliştirme / MVP.** Bu depo üretim ortamında güvenli kullanım için hazır olduğu iddiasında değildir. Canlı kullanımdan önce CSRF koruması, e-posta/SMS doğrulama, dosya yükleme güvenliği, moderasyon, HTTPS ve diğer güvenlik kontrolleri tamamlanmalıdır.
+
+**Gizli dosyalar:** Gerçek `.env` dosyası, API anahtarları ve gerçek kullanıcı dosyaları repoya eklenmemelidir.
+
+## Geliştirici
+
+**Melih Efe Ercan** · [GitHub](https://github.com/melih357) · [LinkedIn](https://www.linkedin.com/in/melihefeercan/)
